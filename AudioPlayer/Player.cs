@@ -8,21 +8,21 @@ namespace Audioplayer
 {
     class Player
     {
-        public class CompareHelper : IComparer<string>
+        public class CompareHelper : IComparer<string> // realize custom sorting
         {
-            public int Compare(string x, string y)
+            public int Compare(string x, string y) // realize custom sorting
             {
-                if (Convert.ToInt32(x[x.Length - 1]) < Convert.ToInt32(y[y.Length - 1]))
+                if (Convert.ToInt32(x[x.Length - 1]) < Convert.ToInt32(y[y.Length - 1])) // realize custom sorting
                 {
-                    return -1;
+                    return -1;// realize custom sorting
                 }
-                else if (Convert.ToInt32(x[x.Length - 1]) > Convert.ToInt32(y[y.Length - 1]))
+                else if (Convert.ToInt32(x[x.Length - 1]) > Convert.ToInt32(y[y.Length - 1]))// realize custom sorting
                 {
-                    return 1;
+                    return 1;// realize custom sorting
                 }
-                else
+                else// realize custom sorting
                 {
-                    return 0;
+                    return 0;// realize custom sorting
                 }
             }
         }
@@ -32,10 +32,10 @@ namespace Audioplayer
         public const int maxVolume = 100;
         public bool isLock;
         private bool playing;
-        public List<Song> songs;
+        public List<Song> songs; //replace [] to list
         public Random rnd = new Random();
-        public CompareHelper Comp = new CompareHelper();
-            
+        public CompareHelper Comp = new CompareHelper(); // realize custom sorting
+
         //B5-Player4/10. Properties.
         public bool Playing
         {
@@ -102,17 +102,17 @@ namespace Audioplayer
                 Volume = Volume - Step;
             }
         }
-        public void Play(bool Loop = false)
+        public void Play(bool Loop = false) //change method play
         {
-            if (Loop == false)
+            if (Loop == false) //change method play
             {
-                Shufle(songs);
+                Shufle(songs); //change method play
             }
-            else
+            else //change method play
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 5; i++) //change method play
                 {
-                    Shufle(songs);
+                    Shufle(songs); //change method play
                 }
             }
             if (playing == true)
@@ -126,11 +126,11 @@ namespace Audioplayer
             }
 
         }
-        public void LyricsOutput()
+        public void LyricsOutput() // this is method for output to console B7-Player1/2. SongsListShuffle.
         {
-            foreach (Song item in songs)
+            foreach (Song item in songs) // this is method for output to console B7-Player1/2. SongsListShuffle.
             {
-                Console.WriteLine($"{item.title} --- {item.lyrics}");
+                Console.WriteLine($"{item.title} --- {item.lyrics}"); // this is method for output to console B7-Player1/2. SongsListShuffle.
             }
         }
         public bool Stop()
@@ -177,46 +177,46 @@ namespace Audioplayer
         {
         }
 
-        public List<Song> Shufle(List<Song> oldList)
+        public List<Song> Shufle(List<Song> oldList) //method shufle
         {
-            List<Song> newList = new List<Song>();
-            for (int i = 0; i < oldList.Count + 1000; i++)
+            List<Song> newList = new List<Song>(); //method shufle
+            for (int i = 0; i < oldList.Count + 1000; i++) //method shufle
             {
-                int index = rnd.Next(0, oldList.Count);
-                if (!(newList.Contains(oldList[index])))
+                int index = rnd.Next(0, oldList.Count); //method shufle
+                if (!(newList.Contains(oldList[index]))) //method shufle
                 {
-                    newList.Add(oldList[index]);
+                    newList.Add(oldList[index]); //method shufle
                 }
-                else if (newList.Contains(oldList[index])) 
+                else if (newList.Contains(oldList[index]))  //method shufle
                 {
-                    continue;
+                    continue; //method shufle
                 }
             }
-            return newList;
+            return newList; //method shufle
         }
 
-        public List<Song> SortByTitle(List<Song> oldList)
+        public List<Song> SortByTitle(List<Song> oldList) //method to sort using custom Sorting class
         {
-            List<Song> sortedSongsList = new List<Song>();
-            List<string> titleList = new List<string>();
-            foreach (Song item in oldList)
+            List<Song> sortedSongsList = new List<Song>(); //method to sort using custom Sorting class
+            List<string> titleList = new List<string>(); //method to sort using custom Sorting class
+            foreach (Song item in oldList) //method to sort using custom Sorting class
             {
-                titleList.Add(item.title);
-                
+                titleList.Add(item.title); //method to sort using custom Sorting class
+
             }
-             titleList.Sort(Comp);
-            for (int i = 0; i < titleList.Count; i++)
+             titleList.Sort(Comp); //method to sort using custom Sorting class
+            for (int i = 0; i < titleList.Count; i++) //method to sort using custom Sorting class
             {
-                for (int j = 0; j < oldList.Count; j++)
+                for (int j = 0; j < oldList.Count; j++) //method to sort using custom Sorting class
                 {
-                    if (titleList[i] == oldList[j].title)
+                    if (titleList[i] == oldList[j].title) //method to sort using custom Sorting class
                     {
-                        sortedSongsList.Add(oldList[j]);
+                        sortedSongsList.Add(oldList[j]); //method to sort using custom Sorting class
                     }
                 }
                 
             }
-            return sortedSongsList;
+            return sortedSongsList; //method to sort using custom Sorting class
         }
     }
 }
